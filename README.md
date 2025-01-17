@@ -14,6 +14,8 @@ To create:
 
 * a virtual database using AWS RDS with PostgreSQL
 
+* a simple storage service using an AWS S3 bucket.
+
 To also set up:
 
 * a key pair for SSH access to the virtual server
