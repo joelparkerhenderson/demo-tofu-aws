@@ -1,7 +1,5 @@
 ##
-#
 # aws_security_group
-#
 ##
 
 # Create a demo_tofu_aws security group, suitable for typical demo traffic, such

@@ -1,7 +1,8 @@
 ##
+# AWS EC2 instance
 #
-# AWS EC2 instances
-#
+# Provides an EC2 instance resource. This allows instances to be created,
+# updated, and deleted. Instances also support provisioning.
 ##
 
 # Create an EC2 instance, using our existing key pair from above.

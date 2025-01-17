@@ -1,7 +1,5 @@
 ##
-#
 # AWS network instance
-#
 ##
 
 # Uncomment this if you wish to create your own aws network interface.

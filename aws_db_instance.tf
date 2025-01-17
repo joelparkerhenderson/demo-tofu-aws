@@ -1,7 +1,9 @@
 ##
-#
 # AWS database instance
 #
+# Provides an RDS instance resource. A DB instance is an isolated database
+# environment in the cloud. A DB instance can contain multiple user-created
+# databases.
 ##
 
 variable "aws_db_instance__demo_tofu_aws__username" {
@@ -11,10 +13,10 @@ variable "aws_db_instance__demo_tofu_aws__username" {
     This works with aws_db_instance__demo_tofu_aws__password. 
     This demo uses \"postgres\" because it's the default PostgreSQL database username.
     XXX
-  type = string
-  default = "postgres"
+  type        = string
+  default     = "postgres"
   validation {
-    condition = length(var.aws_db_instance__demo_tofu_aws__username) > 0
+    condition     = length(var.aws_db_instance__demo_tofu_aws__username) > 0
     error_message = "Length must be > 0."
   }
 }
@@ -26,10 +28,10 @@ variable "aws_db_instance__demo_tofu_aws__password" {
     This works with aws_db_instance__demo_tofu_aws__username. 
     This demo uses our preference of a ZID, which is any secure random 32-character lowercase hexadecimal string.
     XXX
-  type = string
-  default = "e9d84ecb95c01e1b9db44cdb95045542"
+  type        = string
+  default     = "e9d84ecb95c01e1b9db44cdb95045542"
   validation {
-    condition = length(var.aws_db_instance__demo_tofu_aws__password) > 0
+    condition     = length(var.aws_db_instance__demo_tofu_aws__password) > 0
     error_message = "Length must be > 0."
   }
   sensitive = true
@@ -41,10 +43,10 @@ variable "aws_db_instance__demo_tofu_aws__db_name" {
     This is the PostgreSQL database name that will be created.
     This demo uses "demo_tofu_aws" because it makes it easy to see which database goes with this demo.
     XXX
-  type = string
-  default = "demo_tofu_aws"
+  type        = string
+  default     = "demo_tofu_aws"
   validation {
-    condition = length(var.aws_db_instance__demo_tofu_aws__db_name) > 0
+    condition     = length(var.aws_db_instance__demo_tofu_aws__db_name) > 0
     error_message = "Length must be > 0."
   }
 }
@@ -56,10 +58,10 @@ variable "aws_db_instance__demo_tofu_aws__identifier" {
     This demo uses \"demo-tofu-aws\" because it makes it easy to see which database goes with this demo,
     and AWS syntax prohibits underscores, so we use hyphens instead.
     XXX
-  type = string
-  default = "demo-tofu-aws"
+  type        = string
+  default     = "demo-tofu-aws"
   validation {
-    condition = can(regex("^[-[:alnum:]]+$", var.aws_db_instance__demo_tofu_aws__identifier))
+    condition     = can(regex("^[-[:alnum:]]+$", var.aws_db_instance__demo_tofu_aws__identifier))
     error_message = "Length must be > 0."
   }
 }

@@ -1,7 +1,5 @@
 ##
-#
 # Database instance a.k.a. database object
-#
 ##
 
 # Uncomment these if you wish to create your own database.

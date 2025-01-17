@@ -1,18 +1,22 @@
 ##
-#
 # AWS S3 bucket
 #
+# Interconnections:
+#
+#   * aws_s3_bucket
+#   * aws_s3_bucket_acl
+#   * aws_s3_bucket_ownership_controls
 ##
 
 resource "aws_s3_bucket" "demo_tofu_aws" {
 
   # bucket - (Optional, Forces new resource) Name of the bucket. If omitted,
   # Tofu will assign a random, unique name. Must be lowercase < 64 characters.
-  bucket = "demo-tofu-aws" 
+  bucket = "demo-tofu-aws"
 
   # tags - (Optional) Map of tags to assign to the bucket. If
   tags = {
-    Name = "Demo Tofu AWS"
+    Name        = "Demo Tofu AWS"
     Environment = "Development"
   }
 

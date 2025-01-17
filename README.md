@@ -14,6 +14,8 @@ To create:
 
 * a virtual database using AWS RDS with PostgreSQL
 
+* a serverless function "hello world" using AWS lambda.
+
 * a simple storage service using an AWS S3 bucket.
 
 To also set up:
@@ -77,6 +79,8 @@ commands will detect it and remind you to do so if necessary.
 ### Typical commands
 
 Typical commands:
+
+  * `tofu validate` does a syntax check.
 
   * `tofu plan` shows what will run.
 

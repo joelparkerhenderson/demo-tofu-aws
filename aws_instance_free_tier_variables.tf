@@ -1,7 +1,5 @@
 ##
-#
 # AWS instance free tier variables
-#
 ##
 
 variable "aws_instance__free_tier__ami" {

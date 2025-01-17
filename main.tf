@@ -1,5 +1,4 @@
 ##
-#
 # Tofu file with helpful annotations.
 #
 # This file has many annotations to explain how to use it.
@@ -7,7 +6,6 @@
 # this file for your own purposes, with your own settings.
 #
 # We welcome questions and constructive feedback.
-#
 ##
 
 # The file starts with the `terraform` block configuration.
