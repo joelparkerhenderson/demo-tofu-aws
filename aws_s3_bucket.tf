@@ -11,7 +11,8 @@
 resource "aws_s3_bucket" "demo_tofu_aws" {
 
   # bucket - (Optional, Forces new resource) Name of the bucket. If omitted,
-  # Tofu will assign a random, unique name. Must be lowercase < 64 characters.
+  # Tofu will assign a random, unique name. Must be lowercase < 64 characters,
+  # with dashes allowed.
   bucket = "demo-tofu-aws"
 
   # tags - (Optional) Map of tags to assign to the bucket. If

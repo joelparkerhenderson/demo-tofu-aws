@@ -1,0 +1,58 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DemoTofuAWS",
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:s3:::demo-tofu-aws",
+        "arn:aws:s3:::demo-tofu-aws/*",
+        "arn:aws:sns:*:*:demo_tofu_aws",
+        "arn:aws:iam::*:user/demo_tofu_aws",
+        "arn:aws:iam::*:role/demo_tofu_aws",
+        "arn:aws:iam::*:role/demo_tofu_aws_assume_role_lambda",
+        "arn:aws:lambda:*:*:function:demo_tofu_aws_hello_world",
+        "arn:aws:lambda:*:*:function:demo_tofu_aws_hello_world:*",
+        "arn:aws:lambda:*:*:function:demo_tofu_aws_hello_world:demo_tofu_aws"
+
+      ]
+    },
+    {
+      "Sid": "DemoTofuAWSEC2",
+      "Action": [
+        "ec2:Describe*"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DemoTofuAWSLogs",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DemoTofuAWSRDS",
+      "Action": [
+        "rds:DescribeDBInstances",
+        "rds:CreateDBInstance"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    },
+    {
+      "Sid": "DemoTofuAWSAPIGatewayGet",
+      "Action": [
+        "apigateway:GET",
+        "apigateway:POST"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
+    }
+  ]
+}

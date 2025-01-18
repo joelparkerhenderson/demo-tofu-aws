@@ -141,9 +141,9 @@ Get your AWS security credentials, if you don't already have them.
 
 You can run this demo by using any AWS user you want.
 
-  * For example, you can run this as your own user.
+  * For example, you can run this as your own user, presuming the user has sufficient permissions.
 
-  * We prefer to create a new AWS IAM user that is specific for this demo. We name the user "demo_tofu_aws".
+  * We prefer to create a new AWS IAM user that is specific for this demo. We name the user "demo_tofu_aws" and we provide a custom policy.
 
 
 ### Create an AWS IAM user (optional)
@@ -162,8 +162,8 @@ Go to your AWS IAM users page, such as:
 
   * Choose "Attach existing policies directly" because this is just for a demo.
 
-  * Add policies AmazonEC2FullAccess and AmazonRDSDataFullAccess, because this demo will create an EC2 instance and RDS database.
-
+  * In this repo, see the file `demo_tofu_aws_policy.json". Add the policy JSON to the user.
+  
   * Click "Create User"
 
   * Click "Security Credentials".

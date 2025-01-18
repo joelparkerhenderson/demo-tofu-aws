@@ -5,7 +5,7 @@
 # Uncomment these if you wish to create your own database.
 # This demo doesn't need these because the database is automatically
 # created during the setup in the file aws_db_instance.tf.
-  
+
 # provider "postgresql" {
 #   host = aws_db_instance.demo_tofu_aws.address
 #   port = aws_db_instance.demo_tofu_aws.port

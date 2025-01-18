@@ -36,15 +36,15 @@ resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_sns" {
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.demo_tofu_aws.function_name
   principal     = "sns.amazonaws.com"
-  source_arn    = aws_sns_topic.default.arn
+  source_arn    = aws_sns_topic.demo_tofu_aws.arn
 }
 
-resource "aws_sns_topic" "default" {
-  name = "call-lambda-maybe"
+resource "aws_sns_topic" "demo_tofu_aws" {
+  name = "demo_tofu_aws"
 }
 
 resource "aws_sns_topic_subscription" "lambda" {
-  topic_arn = aws_sns_topic.default.arn
+  topic_arn = aws_sns_topic.demo_tofu_aws.arn
   protocol  = "lambda"
   endpoint  = aws_lambda_function.demo_tofu_aws.arn
 }

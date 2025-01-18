@@ -15,8 +15,8 @@
 resource "aws_lambda_function" "demo_tofu_aws" {
 
   # filename - The function source code, bundled as a zip file.
-  filename      = "hello_world.zip"
-  function_name = "hello_world"
+  filename      = "demo_tofu_aws_hello_world.zip"
+  function_name = "demo_tofu_aws_hello_world"
   role          = aws_iam_role.demo_tofu_aws_assume_role_lambda.arn
   handler       = "index.handler"
 
@@ -24,7 +24,7 @@ resource "aws_lambda_function" "demo_tofu_aws" {
   runtime = "python3.13"
 
   # source_code_hash - The hash of the source code zip file.
-  source_code_hash = filebase64sha256("hello_world.zip")
+  source_code_hash = filebase64sha256("demo_tofu_aws_hello_world.zip")
 
 }
 
