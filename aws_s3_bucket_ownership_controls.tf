@@ -1,7 +1,7 @@
 ##
 # AWS S3 bucket ownership controls
 #
-# Provides a resource to manage S3 Bucket Ownership Controls. 
+# Provides a resource to manage S3 Bucket Ownership Controls.
 #
 # For more information, see the S3 Developer Guide.
 #

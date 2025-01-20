@@ -3,7 +3,7 @@
 ##
 
 # Create a demo_tofu_aws security group, suitable for typical demo traffic, such
-# as SSH for connecting to an EC2 instance, RDS PostgreSQL, and HTTPS web traffic. 
+# as SSH for connecting to an EC2 instance, RDS PostgreSQL, and HTTPS web traffic.
 # You will probably want to customize this for your own needs.
 resource "aws_security_group" "demo_tofu_aws_security_group" {
   name        = "demo_tofu_aws_security_group"

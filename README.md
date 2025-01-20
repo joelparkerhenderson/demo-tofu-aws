@@ -6,7 +6,7 @@ Demonstrate how to use:
 
 * [OpenTofu](https://opentofu.org/) which is a fork of Terraform
 
-* [Amazon Web Services](https://aws.amazon.com) 
+* [Amazon Web Services](https://aws.amazon.com)
 
 To create:
 
@@ -99,7 +99,7 @@ Get an AWS account, if you don't already have one:
   * Go to https://aws.amazon.com/free/
 
   * Sign up.
-  
+
 
 ### Get AWS command line software (optional)
 
@@ -130,7 +130,7 @@ aws-cli/2.22.14 Python/3.12.6 Darwin/24.2.0 exe/x86_64
 
 Get your AWS security credentials, if you don't already have them.
 
-  * When you sign in the AWS website, the AWS console shows your username in the upper right. 
+  * When you sign in the AWS website, the AWS console shows your username in the upper right.
 
   * Click your username. You see a dropdown menu. Click "Security Credentials".
 
@@ -157,17 +157,17 @@ Go to your AWS IAM users page, such as:
   * Enter the user name "demo_tofu_aws"
 
   * Skip "Provide access to the AWS Management Console"
-  
+
   * Click "Next"
 
   * Choose "Attach existing policies directly" because this is just for a demo.
 
   * In this repo, see the file `demo_tofu_aws_policy.json". Add the policy JSON to the user.
-  
+
   * Click "Create User"
 
   * Click "Security Credentials".
-  
+
   * See the section "Action keys", which describes: Use access keys to send programmatic calls to AWS from the AWS CLI, AWS Tools for PowerShell, AWS SDKs, or direct AWS API calls.
 
   * Click "Create Access Key".
@@ -177,9 +177,9 @@ Go to your AWS IAM users page, such as:
   * Skip "Set description tag".
 
   * Click "Create Access Key".
-  
+
   * Example Access Key: 6IAIN7RHCYWDYJAHV8LS (optionally save to a file access_key.txt)
-  
+
   * Example Secret Access Key: OJif8/L9UgHqfJzkO3RDqEcypvWkilfkfe8N5YOO (optionally save to a file secret_access_key.txt)
 
 

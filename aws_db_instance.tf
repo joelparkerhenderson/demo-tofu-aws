@@ -8,9 +8,9 @@
 
 variable "aws_db_instance__demo_tofu_aws__username" {
   description = <<-XXX
-    AWS db instance: demo_tofu_aws: username. 
-    This is the username of the PostgreSQL role that will sign in. 
-    This works with aws_db_instance__demo_tofu_aws__password. 
+    AWS db instance: demo_tofu_aws: username.
+    This is the username of the PostgreSQL role that will sign in.
+    This works with aws_db_instance__demo_tofu_aws__password.
     This demo uses \"postgres\" because it's the default PostgreSQL database username.
     XXX
   type        = string
@@ -23,9 +23,9 @@ variable "aws_db_instance__demo_tofu_aws__username" {
 
 variable "aws_db_instance__demo_tofu_aws__password" {
   description = <<-XXX
-    AWS db instance: demo_tofu_aws: password. 
-    This is the password of the PostgreSQL role that will sign in. 
-    This works with aws_db_instance__demo_tofu_aws__username. 
+    AWS db instance: demo_tofu_aws: password.
+    This is the password of the PostgreSQL role that will sign in.
+    This works with aws_db_instance__demo_tofu_aws__username.
     This demo uses our preference of a ZID, which is any secure random 32-character lowercase hexadecimal string.
     XXX
   type        = string
@@ -39,7 +39,7 @@ variable "aws_db_instance__demo_tofu_aws__password" {
 
 variable "aws_db_instance__demo_tofu_aws__db_name" {
   description = <<-XXX
-    AWS db instance: demo_tofu_aws: db_name. 
+    AWS db instance: demo_tofu_aws: db_name.
     This is the PostgreSQL database name that will be created.
     This demo uses "demo_tofu_aws" because it makes it easy to see which database goes with this demo.
     XXX
@@ -53,7 +53,7 @@ variable "aws_db_instance__demo_tofu_aws__db_name" {
 
 variable "aws_db_instance__demo_tofu_aws__identifier" {
   description = <<-XXX
-    AWS db instance: demo_tofu_aws: password. 
+    AWS db instance: demo_tofu_aws: password.
     This is the AWS-specific identifier of the the PostgreSQL instance.
     This demo uses \"demo-tofu-aws\" because it makes it easy to see which database goes with this demo,
     and AWS syntax prohibits underscores, so we use hyphens instead.
@@ -98,7 +98,7 @@ resource "aws_db_instance" "demo_tofu_aws" {
   # The name of the database to create when the DB instance is created. Optional.
   db_name = var.aws_db_instance__demo_tofu_aws__db_name
 
-  # List of VPC security groups to associate. Optional. 
+  # List of VPC security groups to associate. Optional.
   vpc_security_group_ids = [aws_security_group.demo_tofu_aws_security_group.id]
 
   # We like to use the database with public tools such as DB admin apps.

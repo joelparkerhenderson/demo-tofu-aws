@@ -16,7 +16,7 @@
 # "adopts" it into management. If no default VPC exists, Tofu creates a new
 # default VPC, which leads to the implicit creation of other resources. By
 # default, terraform destroy does not delete the default VPC but does remove the
-# resource from Tofu state. 
+# resource from Tofu state.
 ##
 
 resource "aws_default_vpc" "default" {

@@ -1,5 +1,5 @@
 # AWS lambda hander that returns "hello world".help
-# 
+#
 # Thanks to the AWS developer guide pages:
 #
 # https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started.html

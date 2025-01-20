@@ -49,7 +49,7 @@ resource "aws_instance" "demo_tofu_aws" {
     sudo apt-get install -q -y emacs
     sudo apt-get install -q -y fd-find
     sudo apt-get install -q -y git
-    sudo apt-get install -q -y git-core 
+    sudo apt-get install -q -y git-core
     sudo apt-get install -q -y htop
     sudo apt-get install -q -y jq
     sudo apt-get install -q -y nginx
@@ -70,14 +70,14 @@ resource "aws_instance" "demo_tofu_aws" {
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
     sudo apt-get -q -y update
-    sudo apt-get install -q -y docker-ce 
+    sudo apt-get install -q -y docker-ce
     sudo apt-get install -q -y docker-ce-cli
     sudo apt-get install -q -y containerd.io
 
     # Finish
     sudo apt-get -q -y autoclean
     sudo apt-get -q -y --purge autoremove
-    
+
   EOF
 
 }
