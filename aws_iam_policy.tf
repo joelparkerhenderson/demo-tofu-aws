@@ -30,6 +30,7 @@ resource "aws_iam_policy" "demo_tofu_aws" {
         Action : [
           "apigateway:GET",
           "apigateway:POST",
+          "ec2:AttachInternetGateway",
           "ec2:AttachNetworkInterface",
           "ec2:AuthorizeSecurityGroupEgress",
           "ec2:AuthorizeSecurityGroupIngress",
