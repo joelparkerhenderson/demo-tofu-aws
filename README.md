@@ -10,19 +10,31 @@ Demonstrate how to use:
 
 To create:
 
-* a virtual server using AWS EC2 with Ubuntu
+* a virtual server instance using AWS EC2 with Ubuntu.
 
-* a virtual database using AWS RDS with PostgreSQL
+* a virtual database using AWS RDS with PostgreSQL.
 
-* a serverless function "hello world" using AWS lambda.
+* a serverless function "hello world" using AWS Lambda.
 
-* a simple storage service using an AWS S3 bucket.
+* a simple storage service bucket using AWS S3.
 
-To also set up:
+And also set up:
+
+* a user and policy using AWS IAM.
 
 * a key pair for SSH access to the virtual server
 
+* a virtual private cloud (VPC) with two subnets in multiple availability zones.
+
 * a security group that permits SSH, HTTPS, PostgreSQL, etc.
+
+Bonus extras:
+
+* How to create and use Tofu variables, including descriptions and validations
+
+* Configure AWS free tier variables for the AWS EC2 server and AWS RDS database.
+
+
 
 Bonus extras:
 
