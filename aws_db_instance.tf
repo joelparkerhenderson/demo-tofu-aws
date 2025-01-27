@@ -98,8 +98,11 @@ resource "aws_db_instance" "demo_tofu_aws" {
   # The name of the database to create when the DB instance is created. Optional.
   db_name = var.aws_db_instance__demo_tofu_aws__db_name
 
+  # Subnets. Optional.
+  db_subnet_group_name = aws_db_subnet_group.demo_tofu_aws.name
+
   # List of VPC security groups to associate. Optional.
-  vpc_security_group_ids = [aws_security_group.demo_tofu_aws_security_group.id]
+  vpc_security_group_ids = [aws_security_group.demo_tofu_aws.id]
 
   # We like to use the database with public tools such as DB admin apps.
   publicly_accessible = "true"
