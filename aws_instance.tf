@@ -10,8 +10,9 @@ resource "aws_instance" "demo_tofu_aws" {
   ami                         = var.aws_instance__free_tier__ami # data.aws_ami.ubuntu_with_current_version.id
   instance_type               = var.aws_instance__free_tier__instance_type
   associate_public_ip_address = true
-  key_name                    = "demo_tofu_aws_key_pair"
-  vpc_security_group_ids      = [aws_security_group.demo_tofu_aws_security_group.id]
+  key_name                    = "demo_tofu_aws"
+  subnet_id                   = aws_subnet.demo_tofu_aws_availability_zone_0.id
+  vpc_security_group_ids      = [aws_security_group.demo_tofu_aws.id]
 
   tags = {
     Name = "demo_tofu_aws"
