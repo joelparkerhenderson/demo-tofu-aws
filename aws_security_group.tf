@@ -24,85 +24,80 @@ resource "aws_security_group" "demo_tofu_aws" {
     delete = "2m"
   }
 
-  # Allow SSH
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  # Allow HTTP
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  # Allow HTTPS
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  # Allow PostgreSQL
-  ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
-  # Allow all outbound traffic. By default, AWS creates an ALLOW ALL egress rule
-  # when creating a new Security Group inside of a VPC. When creating a new
-  # Security Group inside a VPC, Terraform will remove this default rule, and
-  # require you specifically re-create it if you desire that rule. We feel this
-  # leads to fewer surprises in terms of controlling your egress rules. If you
-  # desire this rule to be in place, you can use this egress block.
-  egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
-  }
-
 }
 
-# If you prefer to do it the ingress rules and egress rules individually, then
-# you can use the following code as an example starting point.
+resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
+  security_group_id = aws_security_group.demo_tofu_aws.id
+  cidr_ipv4         = aws_vpc.demo_tofu_aws.cidr_block
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
 
-# resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv4" {
-#   security_group_id = aws_security_group.allow_tls.id
-#   cidr_ipv4         = aws_vpc.demo_tofu_aws.cidr_block
-#   from_port         = 443
+# resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv6" {
+#   security_group_id = aws_security_group.demo_tofu_aws.id
+#   cidr_ipv6         = aws_vpc.demo_tofu_aws.ipv6_cidr_block
+#   from_port         = 22
 #   ip_protocol       = "tcp"
-#   to_port           = 443
+#   to_port           = 22
 # }
 
-# resource "aws_vpc_security_group_ingress_rule" "allow_tls_ipv6" {
-#   security_group_id = aws_security_group.allow_tls.id
+resource "aws_vpc_security_group_ingress_rule" "allow_http_ipv4" {
+  security_group_id = aws_security_group.demo_tofu_aws.id
+  cidr_ipv4         = aws_vpc.demo_tofu_aws.cidr_block
+  from_port         = 80
+  ip_protocol       = "tcp"
+  to_port           = 80
+}
+
+# resource "aws_vpc_security_group_ingress_rule" "allow_http_ipv6" {
+#   security_group_id = aws_security_group.demo_tofu_aws.id
+#   cidr_ipv6         = aws_vpc.demo_tofu_aws.ipv6_cidr_block
+#   from_port         = 80
+#   ip_protocol       = "tcp"
+#   to_port           = 80
+# }
+
+resource "aws_vpc_security_group_ingress_rule" "allow_https_ipv4" {
+  security_group_id = aws_security_group.demo_tofu_aws.id
+  cidr_ipv4         = aws_vpc.demo_tofu_aws.cidr_block
+  from_port         = 443
+  ip_protocol       = "tcp"
+  to_port           = 443
+}
+
+# resource "aws_vpc_security_group_ingress_rule" "allow_https_ipv6" {
+#   security_group_id = aws_security_group.demo_tofu_aws.id
 #   cidr_ipv6         = aws_vpc.demo_tofu_aws.ipv6_cidr_block
 #   from_port         = 443
 #   ip_protocol       = "tcp"
 #   to_port           = 443
 # }
 
+resource "aws_vpc_security_group_ingress_rule" "allow_postgresql_ipv4" {
+  security_group_id = aws_security_group.demo_tofu_aws.id
+  cidr_ipv4         = aws_vpc.demo_tofu_aws.cidr_block
+  from_port         = 5432
+  ip_protocol       = "tcp"
+  to_port           = 5432
+}
+
+# resource "aws_vpc_security_group_ingress_rule" "allow_postgresql_ipv6" {
+#   security_group_id = aws_security_group.demo_tofu_aws.id
+#   cidr_ipv6         = aws_vpc.demo_tofu_aws.ipv6_cidr_block
+#   from_port         = 5432
+#   ip_protocol       = "tcp"
+#   to_port           = 5432
+# }
+
 # resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
-#   security_group_id = aws_security_group.allow_tls.id
+#   security_group_id = aws_security_group.demo_tofu_aws.id
 #   cidr_ipv4         = "0.0.0.0/0"
-#   ip_protocol       = "-1" # semantically equivalent to all ports
+#   ip_protocol       = "-1" 
 # }
 
 # resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv6" {
-#   security_group_id = aws_security_group.allow_tls.id
+#   security_group_id = aws_security_group.demo_tofu_aws.id
 #   cidr_ipv6         = "::/0"
 #   ip_protocol       = "-1" # semantically equivalent to all ports
 # }
