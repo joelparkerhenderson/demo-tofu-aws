@@ -49,7 +49,7 @@ LAYOUT_WITH_LEGEND()
 
 title Demo Tofu AWS + C4 Container Diagram
 
-Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\n\n")
+Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.tf\naws_availability_zones.tf")
 Container_Ext(tofu_state, "Tofu State", "", "tofu.tfstate\ntofu.tfstate.backup\n\n")
 tofu_main -d-> tofu_state
 
