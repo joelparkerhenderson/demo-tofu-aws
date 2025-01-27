@@ -7,7 +7,7 @@
 # instances.
 ##
 
-resource "aws_key_pair" "demo_tofu_aws_key_pair" {
-  key_name   = "demo_tofu_aws_key_pair"
+resource "aws_key_pair" "demo_tofu_aws" {
+  key_name   = "demo_tofu_aws"
   public_key = file("demo_tofu_aws_key_pair.pub")
 }
