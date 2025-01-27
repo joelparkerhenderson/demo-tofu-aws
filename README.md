@@ -143,7 +143,7 @@ You can run this demo by using any AWS user you want.
 
   * For example, you can run this as your own user, presuming the user has sufficient permissions.
 
-  * We prefer to create a new AWS IAM user that is specific for this demo. We name the user "demo_tofu_aws" and we provide a custom policy.
+  * We prefer to create a new AWS IAM user that is specific for this demo. We name the user "demo_tofu_aws" and we attach a custom policy by copying the JSON from the file [`demo_tofu_aws_policy.json`](demo_tofu_aws_policy.json).
 
 
 ### Create an AWS IAM user (optional)
