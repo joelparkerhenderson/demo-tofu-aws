@@ -17,7 +17,7 @@ resource "aws_lambda_function" "demo_tofu_aws" {
   # filename - The function source code, bundled as a zip file.
   filename      = "demo_tofu_aws_hello_world.zip"
   function_name = "demo_tofu_aws_hello_world"
-  role          = aws_iam_role.demo_tofu_aws_assume_role_lambda.arn
+  role          = aws_iam_role.demo_tofu_aws.arn
   handler       = "index.handler"
 
   # runtime - The programming language and version that the function needs.
@@ -28,7 +28,7 @@ resource "aws_lambda_function" "demo_tofu_aws" {
 
 }
 
-resource "aws_iam_role" "demo_tofu_aws_assume_role_lambda" {
+resource "aws_iam_role" "demo_tofu_aws" {
   name = "demo_tofu_aws"
 
   # Tofu's "jsonencode" function converts a
