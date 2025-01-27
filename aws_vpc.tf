@@ -10,6 +10,6 @@ resource "aws_vpc" "demo_tofu_aws" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   tags = {
-    name = "demo_tofu_aws"
+    Name = "demo_tofu_aws"
   }
 }
