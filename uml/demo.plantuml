@@ -54,14 +54,14 @@ Container_Ext(tofu_state, "Tofu State", "", "tofu.tfstate\ntofu.tfstate.backup\n
 tofu_main -d-> tofu_state
 
 Container(aws_ec2, "AWS EC2 Server", "", "aws_instance.tf\naws_instance_free_tier_variables.tf\naws_key_pair.tf\n")
-Container_Ext(key_pair, "SSH Key Pair", "", "demo_tofu_aws\ndemo_tofu_aws.pub\n\n")
+Container_Ext(key_pair, "SSH Key Pair", "", "demo_tofu_aws_key_pair\ndemo_tofu_aws_key_pair.pub\n\n")
 aws_ec2 -d-> key_pair
 
 Container(aws_rds, "AWS RDS PostgreSQL", "", "aws_db_instance.tf\naws_db_instance_free_tier_variables.tf\naws_db_subnet_group.tf\npostgresql.tf")
 Container_Ext(app_data, "Application Data TODO", "", "migrations.sql\ndumps.sql\nseeds.sql\n")
 aws_rds -d-> app_data
 
-Container(aws_security, "AWS Security Policy", "", "aws_security_group.tf\n\n\n")
+Container(aws_security, "AWS Security Policy", "", "aws_iam_policy.tf\naws_security_group.tf\naws_vpc_security_group_ingress_rule\naws_vpc_security_group_egress_rule")
 Container_Ext(policy, "Policy JSON", "", "demo_tofu_aws_policy.json\n\n\n")
 aws_security -d-> policy
 
@@ -69,7 +69,7 @@ Container(aws_lambda, "AWS Lambda", "", "aws_lambda_function.tf\naws_lambda_perm
 Container_Ext(hello_world, "Hello World Program", "", "demo_tofu_aws_hello_world.py\ndemo_tofu_aws_hello_world.zip\n\n")
 aws_lambda -d-> hello_world
 
-Container(aws_vpc, "AWS VPC", "", "aws_vpc.tf\naws_default_vpc.tf\naws_subnet.tf\n")
+Container(aws_vpc, "AWS VPC", "", "aws_vpc.tf\naws_subnet.tf\naws_internet_gateway.tf\naws_network_interface.tf")
 Container(aws_api_gateway_rest_api, "AWS API", "", "aws_api_gateway_rest_api.tf\naws_network_interface.tf\n\n")
 
 Container(aws_s3, "AWS S3 Bucket", "", "aws_s3_bucket.tf\naws_s3_bucket_acl.tf\naws_s3_bucket_ownership_controls.tf\n")

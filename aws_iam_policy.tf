@@ -50,6 +50,7 @@ resource "aws_iam_policy" "demo_tofu_aws" {
           "ec2:ModifyInstanceAttribute",
           "ec2:ModifySubnetAttribute",
           "ec2:ModifyVpcAttribute",
+          "ec2:RevokeSecurityGroupIngress",
           "ec2:RevokeSecurityGroupEgress",
           "ec2:RunInstances",
           "ec2:StopInstances",
