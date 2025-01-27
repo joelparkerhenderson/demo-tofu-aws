@@ -231,7 +231,7 @@ Option 2 - choose a custom policy:
 
 Create a Tofu configuration file `main.tf`:
 
-```opentofu
+```tofu
 terraform {
 }
 ```
@@ -277,7 +277,7 @@ Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
 
 Append `main.tf`:
 
-```opentofu
+```tofu
 provider "aws" {
 }
 ```
