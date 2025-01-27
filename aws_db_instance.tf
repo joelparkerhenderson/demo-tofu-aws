@@ -4,6 +4,37 @@
 # Provides an RDS instance resource. A DB instance is an isolated database
 # environment in the cloud. A DB instance can contain multiple user-created
 # databases.
+#
+# To launch an Amazon RDS DB instance in a specific Amazon VPC, set up the
+# Amazon VPC and the DB instance according to these requirements:
+#
+# 1. Use an Amazon VPC with at least two subnets in the AWS Region where you
+#    want to deploy your DB instance. If an Amazon VPC doesn't have at least two
+#    subnets, then you receive the following error message: "VPC must have a
+#    minimum of 2 subnets in order to create a DB Subnet Group. Go to the VPC
+#    console to add subnets."
+#
+# 2. Create a DB subnet group and include only the subnets you want Amazon RDS
+#    to launch DB instances in to. If a DB subnet group isn't created, then
+#    Amazon RDS creates a DB subnet group that includes all subnets for the
+#    Amazon VPC. Each DB subnet group must have subnets in at least two
+#    Availability Zones in an AWS Region. If your subnet group doesn't include
+#    subnets from at least two Availability Zones, then you receive following
+#    error message: "DB Subnet Group doesn't meet availability zone coverage
+#    requirement. Please add subnets to cover at least 2 availability zones."
+#
+# 3. Use an approved Amazon Elastic Compute Cloud (Amazon EC2) Dedicated
+#    Instance type. This allows you to have your DB instance in a dedicated
+#    Amazon VPC with an instance tenancy attribute that's set to Dedicated. If
+#    you use an instance type that isn't supported for a dedicated Amazon VPC,
+#    then the Amazon VPC isn't listed.
+#
+# Note: If the Amazon VPC attributes DNS hostnames and DNS resolution aren't
+# turned on, then the Amazon VPC is listed when you choose Launch RDS Instance.
+# However, if you launch an instance that's Publicly Accessible, then you
+# receive the following error message: "Cannot create a publicly accessible DB
+# Instance. The specified VPC does not support DNS resolution, DNS hostnames, or
+# both. Update the VPC and then try again."
 ##
 
 variable "aws_db_instance__demo_tofu_aws__username" {
