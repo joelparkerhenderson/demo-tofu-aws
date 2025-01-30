@@ -35,14 +35,6 @@ Bonus extras:
 * Configure AWS free tier variables for the AWS EC2 server and AWS RDS database.
 
 
-
-Bonus extras:
-
-* How to create and use Tofu variables, including descriptions and validations
-
-* Configure AWS free tier variables for the AWS EC2 server and AWS RDS database.
-
-
 ## Tofu setup
 
 Use the Tofu documentation.
@@ -227,7 +219,7 @@ Option 2 - choose a custom policy:
 
   * Click the "Select" button.
 
-  * Policy Name: demo_tofu_aws_policy (or anything you want)
+  * Policy Name: demo_tofu_aws (or anything you want)
 
   * Policy Document: create the policy you want, such as [these examples](doc/policies)
 
