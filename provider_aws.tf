@@ -9,7 +9,7 @@ provider "aws" {
   #
   # Tofu will automatically search for AWS settings such as via:
   #
-  #   * ~/.aws/credentials
+  #   * $HOME/.aws/credentials
   #   * IAM instance profile credentials
   #   * environment variables
   #

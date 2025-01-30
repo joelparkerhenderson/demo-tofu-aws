@@ -1,3 +1,16 @@
+##
+# AWS IAM Policy
+#
+# This file is a quick example of what AWS IAM can do for policies.
+# For a production application, you would definitely want to lock down 
+# the policies and permissions so the demo user can't corrupt anything.
+#
+# If you want to provide even more protection, AWS recommends using
+# a separate account per purpose, such as a separate demo account.
+# This ensures that even if something goes off the rails with a demo,
+# then the only effects are in the demo account.
+##
+
 resource "aws_iam_policy" "demo_tofu_aws" {
   name        = "demo_tofu_aws"
   path        = "/"
@@ -36,6 +49,8 @@ resource "aws_iam_policy" "demo_tofu_aws" {
           "ec2:AuthorizeSecurityGroupIngress",
           "ec2:CreateInternetGateway",
           "ec2:CreateNetworkInterface",
+          "ec2:CreateRoute",
+          "ec2:CreateRouteTable",
           "ec2:CreateSecurityGroup",
           "ec2:CreateSubnet",
           "ec2:CreateTags",
@@ -44,6 +59,8 @@ resource "aws_iam_policy" "demo_tofu_aws" {
           "ec2:DeleteTags",
           "ec2:Describe*",
           "ec2:DeleteInternetGateway",
+          "ec2:DeleteRoute",
+          "ec2:DeleteRouteTable",
           "ec2:DeleteSubnet",
           "ec2:DeleteVpc",
           "ec2:DetachNetworkInterface",
