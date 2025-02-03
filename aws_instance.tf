@@ -11,8 +11,9 @@ resource "aws_instance" "demo_tofu_aws" {
   instance_type               = var.aws_instance__free_tier__instance_type
   associate_public_ip_address = true
   key_name                    = "demo_tofu_aws"
-  subnet_id                   = aws_subnet.demo_tofu_aws_availability_zone_0.id
+  subnet_id                   = aws_subnet.demo_tofu_aws_0.id
   vpc_security_group_ids      = [aws_security_group.demo_tofu_aws.id]
+  depends_on                  = [aws_internet_gateway.demo_tofu_aws]
 
   tags = {
     Name = "demo_tofu_aws"

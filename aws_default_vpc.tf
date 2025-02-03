@@ -19,10 +19,8 @@
 # resource from Tofu state.
 ##
 
-# We do not use this default VPC because we want to use a custom VPC.
-
-# resource "aws_default_vpc" "default" {
-#   tags = {
-#     Name = "default"
-#   }
-# }
+resource "aws_default_vpc" "default" {
+  tags = {
+    Name = "default"
+  }
+}

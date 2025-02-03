@@ -2,7 +2,7 @@
 # AWS IAM Policy
 #
 # This file is a quick example of what AWS IAM can do for policies.
-# For a production application, you would definitely want to lock down 
+# For a production application, you would definitely want to lock down
 # the policies and permissions so the demo user can't corrupt anything.
 #
 # If you want to provide even more protection, AWS recommends using
@@ -43,6 +43,7 @@ resource "aws_iam_policy" "demo_tofu_aws" {
         Action : [
           "apigateway:GET",
           "apigateway:POST",
+          "ec2:AssociateRouteTable",
           "ec2:AttachInternetGateway",
           "ec2:AttachNetworkInterface",
           "ec2:AuthorizeSecurityGroupEgress",

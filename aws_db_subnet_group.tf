@@ -14,11 +14,11 @@
 resource "aws_db_subnet_group" "demo_tofu_aws" {
   name       = "demo_tofu_aws"
   subnet_ids = [
-    aws_subnet.demo_tofu_aws_availability_zone_0.id,
-    aws_subnet.demo_tofu_aws_availability_zone_1.id,
+    aws_subnet.demo_tofu_aws_0.id,
+    aws_subnet.demo_tofu_aws_1.id,
   ]
 
   tags = {
-    Name = "Demo Tofu AWS"
+    Name = "demo_tofu_aws"
   }
 }

@@ -23,6 +23,7 @@
       "Action": [
         "apigateway:GET",
         "apigateway:POST",
+        "ec2:AssociateRouteTable",
         "ec2:AttachInternetGateway",
         "ec2:AttachNetworkInterface",
         "ec2:AuthorizeSecurityGroupEgress",
