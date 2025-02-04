@@ -20,12 +20,6 @@
 #
 terraform {
 
-  # The default backend is local and uses the file path terraform.tfstate.backend "#" {
-  # Here we define the local backend with a custom file path
-  #
-  backend "local" {
-    path = "tofu.tfstate"
-  }
 
   # The required_providers block describes Provider Requirements i.e. tells Tofu
   # which providers each individual module depends on, and also tells Tofu that
@@ -38,5 +32,49 @@ terraform {
     postgresql = {
       source = "cyrilgdn/postgresql"
     }
+  }
+
+  # To save state to your local system, use this section. 
+  #
+  # The default file name is terraform.tfstate.
+  # We prefer the file name tofu.tfstate.
+  #
+  # backend "local" {
+  #   path = "tofu.tfstate"
+  # }
+
+  # To save the state file in an S3 bucket, you need to configure the backend:
+  #
+  # https://opentofu.org/docs/language/settings/backends/s3/
+  #
+  # To enable bucket versioning, you need to configure the backend:
+  #
+  # https://docs.aws.amazon.com/AmazonS3/latest/userguide/manage-versioning-examples.html
+  #
+  # In practice, we manually create our S3 bucket:
+  #
+  #   * We prefer the bucket name "tofu" because it's simple. You may freely
+  #     change this as you wish.
+  #
+  #   * We append a random string to the bucket name to make it unique. You must
+  #     change this because your bucket name must be globally unique in the
+  #     region.
+  #
+  #   * We prefer Access Control Lists (ACLs) to be disabled.
+  #
+  #   * We prefer to block all public access.
+  #
+  #   * We enable bucket versioning because we want to be able to revert to a
+  #     previous state, such as when we make a mistake.
+  #
+  #   * We prefer to use the same name for the S3 bucket and the DynamoDB table
+  #     because we like it to be easy to relate S3 items to DynamoDB items.
+  #
+  backend "s3" {
+    encrypt        = true
+    bucket         = "tofu-cec9c231e605b826c29dfaffde284a99"
+    dynamodb_table = "tofu-cec9c231e605b826c29dfaffde284a99"
+    key            = "demo-tofu-aws.tfstate"
+    region         = "us-east-1"
   }
 }
