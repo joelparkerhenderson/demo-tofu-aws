@@ -59,8 +59,8 @@ System(databases, "Databases", "", $sprite="database")
 System(files, "Files", "", $sprite="file")
 Person(end_user, "End User", "", $sprite="user")
 
-Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.tf\naws_availability_zones.tf\n")
-Container_Ext(tofu_state, "Tofu State", "", "tofu.tfstate\ntofu.tfstate.backup\n\n")
+Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.tf\naws_availability_zones.tf\n\n")
+Container_Ext(tofu_state, "Tofu State", "", "Local file tofu.tfstate\n- or -\nS3 bucket for state file\nDynamoDB table & LockID")
 developer -d-> tofu_main
 tofu_main -d-> tofu_state
 
@@ -80,7 +80,7 @@ databases -d-> aws_rds
 aws_rds -d-> app_data
 
 Container(aws_security, "AWS Security Policy", "", "aws_iam_policy.tf\naws_security_group.tf\naws_vpc_security_group_ingress_rule\naws_vpc_security_group_egress_rule\n\n")
-Container_Ext(policy, "Policy JSON", "", "demo_tofu_aws_policy.json\n\n\n")
+Container_Ext(policy, "Policy JSON", "", "demo_tofu_aws.json\nsave_state_to_s3.json\nsave_state_to_dynamodb.json\n")
 security -d-> aws_security
 aws_security -d-> policy
 
