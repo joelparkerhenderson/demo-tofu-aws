@@ -36,6 +36,7 @@ skinparam linetype ortho
 '
 !$ICONURL = "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons"
 !include $ICONURL/common.puml
+!include $ICONURL/font-awesome-6/boxes_stacked.puml
 !include $ICONURL/font-awesome-6/database.puml
 !include $ICONURL/font-awesome-6/file.puml
 !include $ICONURL/font-awesome-6/key.puml
@@ -51,6 +52,7 @@ LAYOUT_WITH_LEGEND()
 title Demo Tofu AWS + C4 Container Diagram
 
 Person(developer, "Developer", "", $sprite="user")
+System(packages, "Packages", "", $sprite="boxes_stacked")
 System(network, "Network", "", $sprite="network_wired")
 System(security, "Security", $sprite="key")
 System(functions, "Functions", $sprite="person_running")
@@ -63,6 +65,11 @@ Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.
 Container_Ext(tofu_state, "Tofu State", "", "Local file tofu.tfstate\n- or -\nS3 bucket for state file\nDynamoDB table & LockID")
 developer -d-> tofu_main
 tofu_main -d-> tofu_state
+
+Container(aws_building_blocks, "AWS Building Blocks", "", "Regions\nAvailability Zones\nAmazon Machine Images\nElastic Container Registry\n\n")
+Container_Ext(work_packages, "Work Packages", "", "GitHub HeronAI monorepo\nDocker repositories\n\n")
+packages -d-> aws_building_blocks
+aws_building_blocks -d-> work_packages
 
 Container(aws_vpc, "AWS VPC", "", "aws_vpc.tf\naws_subnet.tf\naws_internet_gateway.tf\naws_network_interface.tf\naws_route_table.tf\naws_route_table_association.tf")
 Container_Ext(internet, "Internet", "", "Public access to\nthe web services\nthat are running on\nthe EC2 instance")
@@ -100,7 +107,8 @@ end_user -d-> aws_api_gateway_rest_api
 aws_api_gateway_rest_api -d-> api
 
 ' Layout
-tofu_main -[hidden]r-> aws_vpc
+tofu_main -[hidden]r-> aws_building_blocks
+aws_building_blocks -[hidden]r-> aws_vpc
 aws_vpc -[hidden]r-> aws_security
 aws_security -[hidden]r-> aws_lambda
 aws_lambda -[hidden]r-> aws_ec2
