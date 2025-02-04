@@ -20,7 +20,6 @@
 #
 terraform {
 
-
   # The required_providers block describes Provider Requirements i.e. tells Tofu
   # which providers each individual module depends on, and also tells Tofu that
   # elsewhere in this module you can use the shorthand name to refer to it.
@@ -34,7 +33,7 @@ terraform {
     }
   }
 
-  # To save state to your local system, use this section. 
+  # To save state to your local system, use this section.
   #
   # The default file name is terraform.tfstate.
   # We prefer the file name tofu.tfstate.
@@ -70,11 +69,17 @@ terraform {
   #   * We prefer to use the same name for the S3 bucket and the DynamoDB table
   #     because we like it to be easy to relate S3 items to DynamoDB items.
   #
+  #
   backend "s3" {
     encrypt        = true
     bucket         = "tofu-cec9c231e605b826c29dfaffde284a99"
-    dynamodb_table = "tofu-cec9c231e605b826c29dfaffde284a99"
     key            = "demo-tofu-aws.tfstate"
     region         = "us-east-1"
+
+    # dynamodb_table - (Optional) Name of DynamoDB Table to use for state
+    # locking and consistency. The table must have a partition key named LockID
+    # with type of String. If not configured, state locking will be disabled.
+    dynamodb_table = "tofu-cec9c231e605b826c29dfaffde284a99"
+
   }
 }

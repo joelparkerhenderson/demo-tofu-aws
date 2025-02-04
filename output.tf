@@ -2,7 +2,7 @@
 # output
 #
 # Output values make information about your infrastructure available on the
-# command line, and can expose information for other Tofu configurations to use. 
+# command line, and can expose information for other Tofu configurations to use.
 # Output values are similar to return values in programming languages.
 ##
 

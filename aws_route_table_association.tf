@@ -1,7 +1,8 @@
 ##
 # AWS route table association
 #
-# Provides a resource to create an association between a route table and a subnet or a route table and an internet gateway or virtual private gateway.
+# Provides a resource to create an association between a route table and a
+# subnet or a route table and an internet gateway or virtual private gateway.
 ##
 
 resource "aws_route_table_association" "demo_tofu_aws" {

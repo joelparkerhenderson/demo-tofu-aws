@@ -1,5 +1,5 @@
 ##
-# AWS Elastic Container Registry (ERC) Repository 
+# AWS Elastic Container Registry (ERC) Repository
 #
 # Provides an Elastic Container Registry Repository.
 ##
