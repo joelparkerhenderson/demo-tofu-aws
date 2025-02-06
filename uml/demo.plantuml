@@ -61,48 +61,48 @@ System(databases, "Databases", "", $sprite="database")
 System(files, "Files", "", $sprite="file")
 Person(end_user, "End User", "", $sprite="user")
 
-Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.tf\naws_availability_zones.tf\n\n")
+Container_Ext(tofu_main, "Tofu Main", "", "main.tf\nprovider_aws.tf\naws_region.tf\naws_availability_zones.tf\n\n\n\n\n\n\n\n")
 Container_Ext(tofu_state, "Tofu State", "", "Local file tofu.tfstate\n- or -\nS3 bucket for state file\nDynamoDB table & LockID")
 developer -d-> tofu_main
 tofu_main -d-> tofu_state
 
-Container(aws_building_blocks, "AWS Building Blocks", "", "Regions\nAvailability Zones\nAmazon Machine Images\nElastic Container Registry\n\n")
+Container(aws_building_blocks, "AWS Building Blocks", "", "Regions\nAvailability Zones\nAmazon Machine Images\nElastic Container Registry\n\n\n\n\n\n\n\n")
 Container_Ext(work_packages, "Work Packages", "", "GitHub HeronAI monorepo\nDocker repositories\n\n")
 packages -d-> aws_building_blocks
 aws_building_blocks -d-> work_packages
 
-Container(aws_vpc, "AWS VPC", "", "aws_vpc.tf\naws_subnet.tf\naws_internet_gateway.tf\naws_network_interface.tf\naws_route_table.tf\naws_route_table_association.tf")
+Container(aws_vpc, "AWS Networking", "", "aws_vpc.tf\naws_subnet.tf\naws_internet_gateway.tf\naws_network_interface.tf\n\n—— Route Tables ——\naws_route_table.tf\naws_route_table_association.tf\n\n—— Route53 ——\naws_route53_zone.tf\naws_route53_record.tf")
 Container_Ext(internet, "Internet", "", "Public access to\nthe web services\nthat are running on\nthe EC2 instance")
 network -d-> aws_vpc
 aws_vpc -d-> internet
 
-Container(aws_ec2, "AWS EC2 Server", "", "aws_instance.tf\naws_instance_free_tier_variables.tf\naws_key_pair.tf\n\n\n")
+Container(aws_ec2, "AWS EC2 Server", "", "aws_instance.tf\naws_instance_free_tier_variables.tf\naws_key_pair.tf\n\n\n\n\n\n\n\n\n")
 Container_Ext(key_pair, "SSH Key Pair", "", "demo_tofu_aws_key_pair\ndemo_tofu_aws_key_pair.pub\n\n")
 servers -d-> aws_ec2
 aws_ec2 -d-> key_pair
 
-Container(aws_rds, "AWS RDS PostgreSQL", "", "aws_db_instance.tf\naws_db_instance_free_tier_variables.tf\naws_db_subnet_group.tf\npostgresql.tf\n\n")
+Container(aws_rds, "AWS RDS PostgreSQL", "", "aws_db_instance.tf\naws_db_instance_free_tier_variables.tf\naws_db_subnet_group.tf\npostgresql.tf\n\n\n\n\n\n\n\n")
 Container_Ext(app_data, "Application Data TODO", "", "migrations.sql\ndumps.sql\nseeds.sql\n")
 databases -d-> aws_rds
 aws_rds -d-> app_data
 
-Container(aws_security, "AWS Security Policy", "", "aws_iam_policy.tf\naws_security_group.tf\naws_vpc_security_group_ingress_rule\naws_vpc_security_group_egress_rule\n\n")
+Container(aws_security, "AWS Security", "", "—— Identity ——\naws_iam_policy.tf\n\n—— Security Groups ——\naws_security_group.tf\naws_vpc_security_group_ingress_rule\naws_vpc_security_group_egress_rule\n\n\n\n\n")
 Container_Ext(policy, "Policy JSON", "", "demo_tofu_aws.json\nsave_state_to_s3.json\nsave_state_to_dynamodb.json\n")
 security -d-> aws_security
 aws_security -d-> policy
 
-Container(aws_lambda, "AWS Lambda", "", "aws_lambda_function.tf\naws_lambda_permission.tf\naws_lambda_alias.tf\n\n\n")
+Container(aws_lambda, "AWS Lambda", "", "aws_lambda_function.tf\naws_lambda_permission.tf\naws_lambda_alias.tf\n\n\n\n\n\n\n\n\n")
 Container_Ext(hello_world, "Hello World Program", "", "demo_tofu_aws_hello_world.py\ndemo_tofu_aws_hello_world.zip\n\n")
 functions -d-> aws_lambda
 aws_lambda -d-> hello_world
 
-Container(aws_s3, "AWS S3 Bucket", "", "aws_s3_bucket.tf\naws_s3_bucket_acl.tf\naws_s3_bucket_ownership_controls.tf\n\n\n")
+Container(aws_s3, "AWS S3 Bucket", "", "aws_s3_bucket.tf\naws_s3_bucket_acl.tf\naws_s3_bucket_ownership_controls.tf\n\n\n\n\n\n\n\n\n")
 Container_Ext(app_files, "Application Files TODO", "", "User spreadsheets\nGenerated charts\nMedia type assets\n")
 files -d-> aws_s3
 aws_s3 -d-> app_files
 
-Container(aws_api_gateway_rest_api, "AWS API", "", "aws_api_gateway_rest_api.tf\naws_network_interface.tf\n\n\n\n")
-Container_Ext(api, "Internet", "", "Programmatic access to\nthe public API services\nthat are runnning on\nany of systems")
+Container(aws_api_gateway_rest_api, "AWS API", "", "aws_api_gateway_rest_api.tf\naws_network_interface.tf\n\n\n\n\n\n\n\n\n\n")
+Container_Ext(api, "Internet", "", "Programmatic access to\nthe public API services\nthat are running on\nany of systems")
 end_user -d-> aws_api_gateway_rest_api
 aws_api_gateway_rest_api -d-> api
 
