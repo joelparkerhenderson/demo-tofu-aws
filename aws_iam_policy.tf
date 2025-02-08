@@ -26,6 +26,8 @@ resource "aws_iam_policy" "demo_tofu_aws" {
         Effect = "Allow"
         Resource = [
           "arn:aws:ec2:*:*:key-pair/demo_tofu_aws",
+          "arn:aws:ecs:*:*:cluster/*",
+          "arn:aws:ecr:*:*:repository/demo_tofu_aws",
           "arn:aws:iam::*:user/demo_tofu_aws",
           "arn:aws:iam::*:policy/demo_tofu_aws",
           "arn:aws:iam::*:role/demo_tofu_aws",
@@ -37,6 +39,17 @@ resource "aws_iam_policy" "demo_tofu_aws" {
           "arn:aws:s3:::demo-tofu-aws",
           "arn:aws:s3:::demo-tofu-aws/*",
           "arn:aws:sns:*:*:demo_tofu_aws"
+        ]
+      },
+      {
+        "Action": [
+          "dynamodb:GetItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+          "arn:aws:dynamodb:*:*:table/tofu-*"
         ]
       },
       {
@@ -81,7 +94,9 @@ resource "aws_iam_policy" "demo_tofu_aws" {
           "logs:CreateLogStream",
           "logs:PutLogEvents",
           "rds:Describe*",
-          "rds:CreateDBInstance"
+          "rds:CreateDBInstance",
+          "route53:CreateHostedZone",
+          "s3:GetObject"
         ],
         Effect : "Allow",
         Resource : "*"
