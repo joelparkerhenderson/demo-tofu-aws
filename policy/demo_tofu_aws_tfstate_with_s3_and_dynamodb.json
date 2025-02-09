@@ -1,0 +1,36 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject", 
+        "s3:PutObject", 
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63/demo_tofu_aws.tfstate"
+      ]
+    },
+    {
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:dynamodb:*:*:table/demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
+       ]
+    }
+  ]
+}

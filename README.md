@@ -34,6 +34,8 @@ Bonus extras:
 
 * Configure AWS free tier variables for the AWS EC2 server and AWS RDS database.
 
+* Save the Tofu state file in an S3 bucket with versioning and DynamoDB LockID.
+
 
 ## Tofu setup
 
@@ -226,6 +228,112 @@ Option 2 - choose a custom policy:
   * Click the button "Validate Policy". If it's not valid, then keep working on it; do not apply it.
 
   * Click the button "Apply Policy".
+
+
+## Save the Tofu state file (optional)
+
+For simple work, some people like to save the Tofu state to a local file. This way is simple and can be fine for one person for experimentation.
+
+For this demo, we prefer to show a way that works well for production systems: we create AWS resources to save the Tofu state file and make it accessible to multiple developers.
+
+* An AWS policy that is specifically to manage the Tofu state file.
+
+* An AWS S3 bucket that is specifically to manage the Tofu state file. This creates cloud reliability plus versions just in case something goes wrong and you want to roll back to a previous version.
+
+* An AWS DynamoDB table that is specifically to manage the Tofu state file version LockID. This makes the project usable by multiple developers because Tofu will maintain the LockID.
+
+
+### Choose a unique identifier
+
+Choose your own unique identifier. The demo will use this in multiple places to guarantee your AWS resources are unique.
+
+We use this simple shell command:
+
+```sh
+hexdump -n 16 -v -e '/1 "%02x"' -e "/16 \"\n\"" /dev/urandom
+```
+
+```stdout
+82ad5310410f344d222c12b070a04f63
+```
+
+### Create an AWS IAM policy
+
+Create an AWS IAM policy to manage the Tofu state file. 
+
+* We use the name `demo_tofu_aws_tf_state_with_s3_and_dynamo_db`.
+  
+* We use the policy in the file [policy/demo_tofu_aws_tf_state_with_s3_and_dynamo_db.json](policy/demo_tofu_aws_tf_state_with_s3_and_dynamo_db.json)
+
+* We prefer to make the policy as specific as possible.
+  
+* You must customize the random string suffix to match your own.
+
+Our policy:
+
+```tofu
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:ListBucket",
+      "Resource": [
+        "arn:aws:s3:::demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject", 
+        "s3:PutObject", 
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63/demo_tofu_aws.tfstate"
+      ]
+    },
+    {
+      "Action": [
+        "dynamodb:GetItem",
+        "dynamodb:PutItem",
+        "dynamodb:DeleteItem"
+      ],
+      "Effect": "Allow",
+      "Resource": [
+        "arn:aws:dynamodb:*:*:table/demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
+      ]
+    }
+  ]
+}
+```
+
+
+### Attach the policy
+
+Edit the AWS IAM user `demo_tofu_aws` to attach the policy `demo_tofu_aws_tf_state_with_s3_and_dynamo_db`.
+
+This enables the user to manage the Tofu state file.
+
+
+### Create an AWS S3 bucket
+
+Create an AWS S3 bucket to hold the Tofu state file.
+
+The bucket name must match the policy item, such as our bucket name and policy item:
+
+* demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63
+
+
+### Create an AWS DynamoDB table
+
+Create an AWS DynamoDB table to hold the Tofu state file LockID value.
+
+The table name must match the policy item. We prefer to choose the table name to match the bucket name.
+
+* demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63
+
+The table partition key must be named "LockID" because that's what Tofu uses and can't be configured.
 
 
 ## Tofu and AWS

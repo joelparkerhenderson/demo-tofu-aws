@@ -49,7 +49,7 @@ resource "aws_iam_policy" "demo_tofu_aws" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "arn:aws:dynamodb:*:*:table/tofu-*"
+          "arn:aws:dynamodb:*:*:table/demo-tofu-aws-*"
         ]
       },
       {

@@ -5,8 +5,9 @@
       "Action": "*",
       "Effect": "Allow",
       "Resource": [
+        "arn:aws:dynamodb:*:*:table/demo-tofu-aws-114d78068020fc5ad7a40ad20412d66a",
         "arn:aws:ec2:*:*:key-pair/demo_tofu_aws",
-        "arn:aws:ecs:*:*:cluster/*",
+        "arn:aws:ecs:*:*:cluster/demo_tofu_aws",
         "arn:aws:ecr:*:*:repository/demo_tofu_aws",
         "arn:aws:iam::*:user/demo_tofu_aws",
         "arn:aws:iam::*:policy/demo_tofu_aws",
@@ -16,20 +17,9 @@
         "arn:aws:lambda:*:*:function:demo_tofu_aws_hello_world:*",
         "arn:aws:lambda:*:*:function:demo_tofu_aws_hello_world:demo_tofu_aws",
         "arn:aws:rds:*:*:subgrp:demo_tofu_aws",
-        "arn:aws:s3:::demo-tofu-aws",
-        "arn:aws:s3:::demo-tofu-aws/*",
+        "arn:aws:s3:::demo-tofu-aws-114d78068020fc5ad7a40ad20412d66a",
+        "arn:aws:s3:::demo-tofu-aws-114d78068020fc5ad7a40ad20412d66a/*",
         "arn:aws:sns:*:*:demo_tofu_aws"
-      ]
-    },
-    {
-      "Action": [
-        "dynamodb:GetItem",
-        "dynamodb:PutItem",
-        "dynamodb:DeleteItem"
-      ],
-      "Effect": "Allow",
-      "Resource": [
-        "arn:aws:dynamodb:*:*:table/tofu-*"
       ]
     },
     {

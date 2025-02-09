@@ -13,7 +13,14 @@ resource "aws_s3_bucket" "demo_tofu_aws" {
   # bucket - (Optional, Forces new resource) Name of the bucket. If omitted,
   # Tofu will assign a random, unique name. Must be lowercase < 64 characters,
   # with dashes allowed.
-  bucket = "demo-tofu-aws"
+  #
+  # We prefer this naming convention:
+  #
+  #   * kebab-case with the  project name
+  #
+  #   * a secure random 32-character lowercase hexadecimal string (a.k.a. ZID).
+  #
+  bucket = "demo-tofu-aws-114d78068020fc5ad7a40ad20412d66a"
 
   # tags - (Optional) Map of tags to assign to the bucket. If
   tags = {

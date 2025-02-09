@@ -39,7 +39,7 @@ terraform {
   # We prefer the file name tofu.tfstate.
   #
   # backend "local" {
-  #   path = "tofu.tfstate"
+  #   path = "demo_tofu_aws.tfstate"
   # }
 
   # To save the state file in an S3 bucket, you need to configure the backend:
@@ -52,12 +52,14 @@ terraform {
   #
   # In practice, we manually create our S3 bucket:
   #
-  #   * We prefer the bucket name "tofu" because it's simple. You may freely
-  #     change this as you wish.
+  #   * For a demo project, we prefer to keep the demo project state in its own
+  #     S3 bucket, separate from any other demo S3 buckets and/or S3 usage.
   #
-  #   * We append a random string to the bucket name to make it unique. You must
-  #     change this because your bucket name must be globally unique in the
-  #     region.
+  #   * Therefore we use the bucket name "demo-tofu-aws-tfstate" to make it
+  #     clear what the state bucket is intended to do, and that it's separate.
+  #
+  #   * We also append a random hex string to the bucket name to make it unique.
+  #     You must change this because bucket names must be unique in a region.
   #
   #   * We prefer Access Control Lists (ACLs) to be disabled.
   #
@@ -72,14 +74,14 @@ terraform {
   #
   backend "s3" {
     encrypt        = true
-    bucket         = "tofu-cec9c231e605b826c29dfaffde284a99"
-    key            = "demo-tofu-aws.tfstate"
+    bucket         = "demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
+    key            = "demo_tofu_aws.tfstate"
     region         = "us-east-1"
 
     # dynamodb_table - (Optional) Name of DynamoDB Table to use for state
     # locking and consistency. The table must have a partition key named LockID
     # with type of String. If not configured, state locking will be disabled.
-    dynamodb_table = "tofu-cec9c231e605b826c29dfaffde284a99"
+    dynamodb_table = "demo-tofu-aws-tfstate-82ad5310410f344d222c12b070a04f63"
 
   }
 }
