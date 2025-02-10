@@ -17,8 +17,7 @@ resource "aws_route_table" "demo_tofu_aws" {
   vpc_id = aws_vpc.demo_tofu_aws.id
 
   route {
-    # cidr_block = "0.0.0.0/0"
-    cidr_block = aws_subnet.demo_tofu_aws_0.cidr_block
+    cidr_block = aws_subnet.demo_tofu_aws_az_0_subnet_0.cidr_block
     gateway_id = aws_internet_gateway.demo_tofu_aws.id
   }
 

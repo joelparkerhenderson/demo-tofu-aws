@@ -14,8 +14,8 @@
 resource "aws_db_subnet_group" "demo_tofu_aws" {
   name       = "demo_tofu_aws"
   subnet_ids = [
-    aws_subnet.demo_tofu_aws_0.id,
-    aws_subnet.demo_tofu_aws_1.id,
+    aws_subnet.demo_tofu_aws_az_0_subnet_0.id,
+    aws_subnet.demo_tofu_aws_az_1_subnet_0.id
   ]
 
   tags = {

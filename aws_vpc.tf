@@ -25,7 +25,7 @@
 ##
 
 resource "aws_vpc" "demo_tofu_aws" {
-  cidr_block           = "10.0.0.0/16"
+  cidr_block           = "10.0.0.0/24"
   enable_dns_support   = true
   enable_dns_hostnames = true
 

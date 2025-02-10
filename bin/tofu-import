@@ -6,10 +6,12 @@ if [ -z $AWS_ACCOUNT_ID ]; then echo "AWS_ACCOUNT_ID env var is undefined"; fi
 tofu import aws_iam_policy.demo_tofu_aws "arn:aws:iam::$AWS_ACCOUNT_ID:policy/demo_tofu_aws"
 tofu import aws_iam_role.demo_tofu_aws "demo_tofu_aws"
 tofu import aws_key_pair.demo_tofu_aws "demo_tofu_aws"
-tofu import aws_s3_bucket.demo_tofu_aws "demo-tofu-aws-tfstate-114d78068020fc5ad7a40ad20412d66a"
+tofu import aws_s3_bucket.demo_tofu_aws "demo-tofu-aws-114d78068020fc5ad7a40ad20412d66a"
 tofu import aws_lambda_function.demo_tofu_aws "demo_tofu_aws_hello_world"
+tofu import aws_ecr_repository.demo_tofu_aws "demo_tofu_aws"
+tofu import aws_vpc.demo_tofu_aws "demo_tofu_aws"
+tofu import aws_security_group.demo_tofu_aws demo_tofu_aws
+tofu import aws_security_group.demo_tofu_aws demo_tofu_aws
 
 #TODO
 # tofu import aws_lambda_alias.demo_tofu_aws "?"
-# tofu import aws_security_group.demo_tofu_aws demo_tofu_aws
-# tofu import aws_vpc.demo_tofu_aws "?"
