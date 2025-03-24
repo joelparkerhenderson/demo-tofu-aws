@@ -66,6 +66,8 @@
         "rds:DescribeDBInstances",
         "rds:CreateDBInstance",
         "route53:CreateHostedZone",
+        "route53:GetHostedZone",
+        "route53:ListTagsForResource",
         "s3:GetObject"
       ],
       "Effect": "Allow",
