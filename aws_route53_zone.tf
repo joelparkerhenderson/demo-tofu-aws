@@ -10,7 +10,8 @@
 ##
 
 resource "aws_route53_zone" "demo_tofu_aws" {
-  name = "demo_tofu_aws.example.com"
+  # Set your own hostname, not my personal name. :-)
+  name = "demo_tofu_aws.joelparkerhenderson.com"
 
   tags = {
     Environment = "demo_tofu_aws"
