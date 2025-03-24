@@ -1,7 +1,7 @@
 #!/bin/sh
 set -euf
 
-if [ -z $AWS_ACCOUNT_ID ]; then echo "AWS_ACCOUNT_ID env var is undefined"; fi
+if [ -z "$AWS_ACCOUNT_ID" ]; then echo "AWS_ACCOUNT_ID env var is undefined"; fi
 
 tofu import aws_iam_policy.demo_tofu_aws "arn:aws:iam::$AWS_ACCOUNT_ID:policy/demo_tofu_aws"
 tofu import aws_iam_role.demo_tofu_aws "demo_tofu_aws"
@@ -12,6 +12,7 @@ tofu import aws_ecr_repository.demo_tofu_aws "demo_tofu_aws"
 tofu import aws_vpc.demo_tofu_aws "demo_tofu_aws"
 tofu import aws_security_group.demo_tofu_aws demo_tofu_aws
 tofu import aws_security_group.demo_tofu_aws demo_tofu_aws
-
-#TODO
-# tofu import aws_lambda_alias.demo_tofu_aws "?"
+tofu import aws_db_subnet_group.demo_tofu_aws demo_tofu_aws
+tofu import aws_lambda_permission.demo_tofu_aws_allow_execution_from_sns demo_tofu_aws_hello_world/AllowExecutionFromSNS
+tofu import aws_lambda_permission.demo_tofu_aws_allow_api_gateway_invoke demo_tofu_aws_hello_world/AllowAPIGatewayInvoke
+tofu import aws_lambda_alias.demo_tofu_aws demo_tofu_aws_hello_world/demo_tofu_aws
