@@ -13,9 +13,9 @@
 
 resource "aws_lambda_permission" "demo_tofu_aws_allow_api_gateway_invoke" {
   statement_id  = "AllowAPIGatewayInvoke"
-  action = "lambda:InvokeFunction"
+  action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.demo_tofu_aws.function_name
-  principal = "apigateway.amazonaws.com"
+  principal     = "apigateway.amazonaws.com"
 
   # The /* part allows invocation from any stage, method, and resource path
   # within the AWS API Gateway REST API.
@@ -24,11 +24,11 @@ resource "aws_lambda_permission" "demo_tofu_aws_allow_api_gateway_invoke" {
 
 resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_cloudwatch" {
   statement_id  = "AllowExecutionFromCloudWatch"
-  action = "lambda:InvokeFunction"
+  action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.demo_tofu_aws.function_name
-  principal = "events.amazonaws.com"
-  source_arn = "arn:aws:events:eu-west-1:111122223333:rule/RunDaily"
-  qualifier = aws_lambda_alias.demo_tofu_aws.name
+  principal     = "events.amazonaws.com"
+  source_arn    = aws_sns_topic.demo_tofu_aws.arn
+  qualifier     = aws_lambda_alias.demo_tofu_aws.name
 }
 
 resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_sns" {
@@ -37,14 +37,4 @@ resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_sns" {
   function_name = aws_lambda_function.demo_tofu_aws.function_name
   principal     = "sns.amazonaws.com"
   source_arn    = aws_sns_topic.demo_tofu_aws.arn
-}
-
-resource "aws_sns_topic" "demo_tofu_aws" {
-  name = "demo_tofu_aws"
-}
-
-resource "aws_sns_topic_subscription" "lambda" {
-  topic_arn = aws_sns_topic.demo_tofu_aws.arn
-  protocol  = "lambda"
-  endpoint  = aws_lambda_function.demo_tofu_aws.arn
 }
