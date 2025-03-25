@@ -22,14 +22,14 @@ resource "aws_lambda_permission" "demo_tofu_aws_allow_api_gateway_invoke" {
   source_arn = "${aws_api_gateway_rest_api.demo_tofu_aws.execution_arn}/*"
 }
 
-resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_cloudwatch" {
-  statement_id  = "AllowExecutionFromCloudWatch"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.demo_tofu_aws.function_name
-  principal     = "events.amazonaws.com"
-  source_arn    = aws_sns_topic.demo_tofu_aws.arn
-  qualifier     = aws_lambda_alias.demo_tofu_aws.name
-}
+# resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_cloudwatch" {
+#   statement_id  = "AllowExecutionFromCloudWatch"
+#   action        = "lambda:InvokeFunction"
+#   function_name = aws_lambda_function.demo_tofu_aws.function_name
+#   principal     = "events.amazonaws.com"
+#   source_arn    = aws_sns_topic.demo_tofu_aws.arn
+#   qualifier     = aws_lambda_alias.demo_tofu_aws.name
+# }
 
 resource "aws_lambda_permission" "demo_tofu_aws_allow_execution_from_sns" {
   statement_id  = "AllowExecutionFromSNS"

@@ -65,7 +65,10 @@
         "logs:PutLogEvents",
         "rds:DescribeDBInstances",
         "rds:CreateDBInstance",
+        "route53:ChangeTagsForResource",
         "route53:CreateHostedZone",
+        "route53:DeleteHostedZone",
+        "route53:GetChange",
         "route53:GetHostedZone",
         "route53:ListTagsForResource",
         "s3:GetObject"
